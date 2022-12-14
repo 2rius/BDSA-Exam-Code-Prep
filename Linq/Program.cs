@@ -82,6 +82,13 @@ public static class QuerySyntax
                select person.Name;
     }
 
+
+    // Summary:
+    // - always from clause first, select clause last
+    // - from clause can be followed by where and orderby clause
+    // - aggregations are not allowed in the query syntax (follow up with an extension method)
+    // - when getting multiple values from a query, use an anonymous type (new { ... })
+    // - when using the query syntax, the compiler will translate the query into a method call
 }
 
 public static class Extensions
@@ -123,4 +130,10 @@ public static class Extensions
             .SelectMany(g => g)
             .Select(person => person.Name);
     }
+
+    // Summary:
+    // - no from clause
+    // - always start with a collection (collection.Method())
+    // - always end with a select clause
+    // - same method names as in the query syntax, except SelectMany instead of Group
 }
