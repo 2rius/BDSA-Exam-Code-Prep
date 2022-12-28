@@ -28,11 +28,8 @@ public class Program
             // Extensions.GetOldestAgeInCity(people, "Paris");
             // QuerySyntax.GetCityGroupedPersonNames(people);
             Extensions.GetCityGroupedPersonNames(people);
-
-        foreach (var person in queryresult)
-        {
-            Console.WriteLine(person);
-        }
+        
+        people.PrintAll();
     }
 }
 
