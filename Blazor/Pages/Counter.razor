@@ -1,0 +1,36 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<h3>Query:</h3>
+
+<input @bind="value">
+
+<button @onclick="UpdateInputValue">Run</button>
+<br>
+<p>@(inputValue)</p>
+
+
+@code {
+    private string? inputValue;
+    private string? value;
+
+    public void UpdateInputValue()
+    {
+        Console.WriteLine(value);
+        inputValue = value;
+    }
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

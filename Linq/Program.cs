@@ -117,6 +117,8 @@ public static class Extensions
             .Max();
     }
 
+    
+
 
     // Grouped by city in reverse order by city name and then wizard name
     public static IEnumerable<string> GetCityGroupedPersonNames(IEnumerable<Person> people)
