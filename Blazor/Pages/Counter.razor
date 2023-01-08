@@ -1,4 +1,6 @@
 ﻿@page "/counter"
+@page "/counteragain"
+@page "/counter/{startingValue:int}"
 
 <PageTitle>Counter</PageTitle>
 
@@ -10,27 +12,46 @@
 
 <h3>Query:</h3>
 
-<input @bind="value">
+<input @bind="value" @bind:event="oninput">
 
-<button @onclick="UpdateInputValue">Run</button>
-<br>
-<p>@(inputValue)</p>
+<button @onclick="ShowButtonText">Run</button>
+<p>@(buttontext)</p>
+
+<p>@(value)</p>
 
 
 @code {
-    private string? inputValue;
+    private string? buttontext;
     private string? value;
 
-    public void UpdateInputValue()
+    [Parameter]
+    public int StartingValue { get; set; } = 0;
+
+    [Parameter]
+    public int IncrementValue { get; set; } = 1;
+
+    protected override void OnParametersSet()
     {
-        Console.WriteLine(value);
-        inputValue = value;
+        currentCount = StartingValue;
+        base.OnParametersSet();
+    }
+
+    public void ShowButtonText()
+    {
+        if (buttontext is null)
+        {
+            buttontext = "heyy, you clicked me!";
+        }
+        else 
+        {
+            buttontext = null;
+        }
     }
 
     private int currentCount = 0;
 
     private void IncrementCount()
     {
-        currentCount++;
+        currentCount += IncrementValue;
     }
 }
